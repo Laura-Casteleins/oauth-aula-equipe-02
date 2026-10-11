@@ -17,8 +17,9 @@ O workflow `ci`, com job `verificar`, foi configurado para executar em todo `pus
 
 O [PR #1 — correção do CI e teste de proteção da main](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1) registra os commits de criação de uma falha intencional em SQL e sua correção. As capturas das execuções `ci #10` e `ci #66` comprovam, respectivamente, uma falha intencional de SQL e um resultado bem-sucedido. A linha do erro está reproduzida abaixo. Os URLs individuais dos runs devem ser copiados da barra de endereço do GitHub, pois o número sequencial do workflow não corresponde ao identificador numérico da URL.
 
-- **Execução CI aprovada (verde):** `ci #66`, job `verificar`, branch `main`, commit `02158d7`, status **Success**. **[PENDENTE — colar URL individual do run #66]**.
-- **Execução CI reprovada (vermelho):** `ci #10`, job `verificar`, evento `pull_request` do PR #1, status **Failure**. **[PENDENTE — colar URL individual do run #10]**.
+- **Execução CI aprovada (verde):** [ci #66 — Success](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/38139609439). Job `verificar`, branch `main`, commit `02158d7`.
+
+- **Execução CI reprovada (vermelha):** [ci #10 — Failure](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/37999911145). Job `verificar`, evento `pull_request` do PR #1. A falha ocorreu devido a um erro proposital de sintaxe SQL na migração.
 - **Trecho comprovado do log de falha**, etapa `Aplica as migrações D1 em um SQLite local`:
 
 ```text
