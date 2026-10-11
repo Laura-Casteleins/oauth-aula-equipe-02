@@ -115,17 +115,3 @@ A declaração explícita aplica o princípio do menor privilégio: `contents: r
 
 Não. A revisão por IA pode produzir alertas úteis, mas também inferências incorretas: no PR #1, a IA desviou parte da análise para a opção `model: ""`, uma configuração que não demonstrava por si só vulnerabilidade no código da aplicação. O status check `verificar` executa testes concretos e reproduzíveis e, quando obrigatório na regra da `main`, impede o merge em caso de falha; a análise da IA deve complementá-lo, não substituí-lo.
 
-## Checklist de evidências antes da entrega
-
-- [x] T1: runs verde e vermelho identificados e erro SQL transcrito.
-- [ ] T1: colar URLs individuais dos runs `ci #66` e `ci #10`.
-- [ ] T2: PR bloqueado e depois liberado; texto de `git push` direto recusado.
-- [x] T3: PR público com comentários da IA antes e depois da correção e parágrafo crítico.
-- [x] T3: log do erro de permissão e commits de retirada/restauração verificados.
-- [ ] T3: colar URLs individuais dos runs e, se possível, links diretos dos comentários.
-- [x] T4: aplicação remota de `0001` e `0002` e merge do PR #4 sem nova execução de `migrar` documentados.
-- [ ] T4: colar URL individual do run `migrar #1` e resultado real do `PRAGMA` remoto.
-- [x] Quatro respostas correspondentes às perguntas do professor.
-- [ ] Criar PR de entrega do `AVALIACAO.md` e conferir CI e revisão por IA nesse PR.
-
-
