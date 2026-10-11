@@ -128,4 +128,4 @@ Não. A revisão por IA pode produzir alertas úteis, mas também inferências i
 - [x] Quatro respostas correspondentes às perguntas do professor.
 - [ ] Criar PR de entrega do `AVALIACAO.md` e conferir CI e revisão por IA nesse PR.
 
-**Observação de segurança:** nunca copiar PATs, tokens Cloudflare nem valores de `secrets` para este relatório, commits ou logs. Os nomes das variáveis e os links de runs são suficientes.
+
