@@ -32,7 +32,7 @@ A vírgula indevida antes do fechamento de `CREATE TABLE` tornou a migração in
 
 **Por que testar as migrações em SQLite antes de chegar ao D1?** Para detectar erros de sintaxe SQL e inconsistências na sequência das alterações antes de aplicá-las ao banco remoto, reduzindo o risco de interromper a atualização do esquema em produção; esse teste não substitui a verificação final no D1.
 
-## Tarefa 2 — Proteção da `main` pelo status check (1,5 ponto)
+## Tarefa 2 — Proteção da `main` pelo status check (1,5 ponto) [PEDENTE]
 
 A tarefa exige uma regra de proteção ou ruleset que obrigue pull request e aprovação do status check **`verificar`** antes do merge. Essa configuração depende das definições administrativas do repositório e **não é comprovada apenas pelos arquivos do ZIP**. Na tentativa de consulta, a conta da integrante Laura recebeu a mensagem `You don't have access to repository options`, portanto não foi possível visualizar ou editar a regra de proteção. Isso **não demonstra** que a regra inexiste.
 
