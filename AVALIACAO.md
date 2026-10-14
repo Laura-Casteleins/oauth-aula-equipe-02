@@ -77,7 +77,13 @@ Error: Process completed with exit code 1.
 
 - [Commit `a68931b`](https://github.com/gabriel240705/oauth-aula-equipe-02/commit/a68931b): restauração de `pull-requests: write`.
 - **Run `revisao-ia #26`** (PR #9): execução aprovada, job `revisar`, 51 segundos.
-- **Links individuais dos runs:** **[PENDENTE — colar URLs de `revisao-ia #10` e `#26` e, se disponível, dos runs relacionados aos comentários do PR #1]**.
+
+- **Execução com erro de permissão:** [revisao-ia #10 — Failure](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/38002448463). Após remover `pull-requests: write`, a IA executou, mas o comentário no PR falhou com `GraphQL: Resource not accessible by integration (addComment)`.
+
+- **Execução aprovada após a restauração da permissão:** [revisao-ia #26 — Success](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/38139535047). O workflow executou com sucesso no PR #9, confirmando que a configuração atual permite a revisão automática.
+
+- **Comentários da IA antes e depois da correção do SQL:** [PR #1 — Conversation](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1). A IA identificou a interpolação insegura e, após a correção, reconheceu o uso de `prepare().bind(nome)`.
+
 - **Comentários antes e depois da correção:** [conversa do PR #1](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1). A IA primeiro apontou interpolação direta de `nome` em `functions/api/teste-sql.js`, recomendando `WHERE aluno = ?` com `.bind(nome)`; depois reconheceu a ausência de SQL inseguro por concatenação. Outros comentários apontaram eventual falha de controle de acesso no endpoint temporário, que foi removido posteriormente.
 
 ### Avaliação crítica de uma afirmação da IA
