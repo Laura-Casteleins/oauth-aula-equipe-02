@@ -7,8 +7,6 @@
 
 > **Atualização das evidências:** 11/10/2026.
 
-> **Critério de registro:** as informações abaixo distinguem implementação conferida nos arquivos e fatos verificáveis nos PRs de evidências ainda não documentadas. Os campos **[PENDENTE]** devem ser preenchidos com o link real da execução (run), trecho de log ou saída do comando; não representam testes já aprovados.
-
 ## Tarefa 1 — CI a cada commit (2,5 pontos)
 
 **Arquivo:** [`.github/workflows/ci.yml`](https://github.com/gabriel240705/oauth-aula-equipe-02/blob/main/.github/workflows/ci.yml)
