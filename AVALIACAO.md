@@ -31,16 +31,28 @@ A vírgula indevida antes do fechamento de `CREATE TABLE` tornou a migração in
 
 **Por que testar as migrações em SQLite antes de chegar ao D1?** Para detectar erros de sintaxe SQL e inconsistências na sequência das alterações antes de aplicá-las ao banco remoto, reduzindo o risco de interromper a atualização do esquema em produção; esse teste não substitui a verificação final no D1.
 
-## Tarefa 2 — Proteção da `main` pelo status check (1,5 ponto) [PEDENTE]
 
-A tarefa exige uma regra de proteção ou ruleset que obrigue pull request e aprovação do status check **`verificar`** antes do merge. Essa configuração depende das definições administrativas do repositório e **não é comprovada apenas pelos arquivos do ZIP**. Na tentativa de consulta, a conta da integrante Laura recebeu a mensagem `You don't have access to repository options`, portanto não foi possível visualizar ou editar a regra de proteção. Isso **não demonstra** que a regra inexiste.
+## Tarefa 2 — Proteção da `main` pelo status check (1,5 ponto)
 
-- **PR usado no experimento de CI:** [PR #1](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1).
-- **Evidência do PR com merge bloqueado por falha no check `verificar`:** **[PENDENTE — link para PR/check e confirmação visual do bloqueio]**.
-- **Evidência do mesmo PR liberado após a correção:** **[PENDENTE — link para PR/check aprovado e liberação de merge]**.
-- **Saída do `git push` direto para a `main` rejeitado pelo GitHub:** **[PENDENTE — transcrever a mensagem de recusa, sem credenciais]**.
+Foi criado o ruleset `Protecao-main`, com aplicação ativa à branch `main`, exigindo pull request e aprovação do status check `verificar` antes do merge.
 
-**Interpretação:** o bloqueio deve impedir o merge enquanto a verificação obrigatória falhar. Após a correção e aprovação do check, a regra deve permitir o merge pelo PR, sem autorizar push direto à `main`.
+- **PR usado nos testes:** [PR #1](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1).
+- **PR bloqueado:** o check obrigatório `ci / verificar` falhou devido ao erro de sintaxe SQL, impedindo o merge.
+- **PR liberado:** após corrigir a migração SQL na mesma branch, os checks `verificar` passaram e o GitHub habilitou o botão de merge.
+- **Teste de push direto:** foi criado o commit local `8e27d2a` e executado `git push origin main`. O GitHub recusou o envio com o erro `GH013`.
+
+**Saída real do Terminal:**
+
+```text
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: - Changes must be made through a pull request.
+remote: - Required status check "verificar" is expected.
+! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs
+```
+
+O teste confirmou que alterações diretas na `main` são bloqueadas e que a aprovação do CI obrigatório é necessária para permitir o merge por pull request.
+
 
 ## Tarefa 3 — Revisão de pull request por IA (3,5 pontos)
 
