@@ -7,8 +7,6 @@
 
 > **Atualização das evidências:** 11/10/2026.
 
-> **Critério de registro:** as informações abaixo distinguem implementação conferida nos arquivos e fatos verificáveis nos PRs de evidências ainda não documentadas. Os campos **[PENDENTE]** devem ser preenchidos com o link real da execução (run), trecho de log ou saída do comando; não representam testes já aprovados.
-
 ## Tarefa 1 — CI a cada commit (2,5 pontos)
 
 **Arquivo:** [`.github/workflows/ci.yml`](https://github.com/gabriel240705/oauth-aula-equipe-02/blob/main/.github/workflows/ci.yml)
@@ -17,8 +15,9 @@ O workflow `ci`, com job `verificar`, foi configurado para executar em todo `pus
 
 O [PR #1 — correção do CI e teste de proteção da main](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1) registra os commits de criação de uma falha intencional em SQL e sua correção. As capturas das execuções `ci #10` e `ci #66` comprovam, respectivamente, uma falha intencional de SQL e um resultado bem-sucedido. A linha do erro está reproduzida abaixo. Os URLs individuais dos runs devem ser copiados da barra de endereço do GitHub, pois o número sequencial do workflow não corresponde ao identificador numérico da URL.
 
-- **Execução CI aprovada (verde):** `ci #66`, job `verificar`, branch `main`, commit `02158d7`, status **Success**. **[PENDENTE — colar URL individual do run #66]**.
-- **Execução CI reprovada (vermelho):** `ci #10`, job `verificar`, evento `pull_request` do PR #1, status **Failure**. **[PENDENTE — colar URL individual do run #10]**.
+- **Execução CI aprovada (verde):** [ci #66 — Success](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/38139609439). Job `verificar`, branch `main`, commit `02158d7`.
+
+- **Execução CI reprovada (vermelha):** [ci #10 — Failure](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/37999911145). Job `verificar`, evento `pull_request` do PR #1. A falha ocorreu devido a um erro proposital de sintaxe SQL na migração.
 - **Trecho comprovado do log de falha**, etapa `Aplica as migrações D1 em um SQLite local`:
 
 ```text
@@ -32,7 +31,7 @@ A vírgula indevida antes do fechamento de `CREATE TABLE` tornou a migração in
 
 **Por que testar as migrações em SQLite antes de chegar ao D1?** Para detectar erros de sintaxe SQL e inconsistências na sequência das alterações antes de aplicá-las ao banco remoto, reduzindo o risco de interromper a atualização do esquema em produção; esse teste não substitui a verificação final no D1.
 
-## Tarefa 2 — Proteção da `main` pelo status check (1,5 ponto)
+## Tarefa 2 — Proteção da `main` pelo status check (1,5 ponto) [PEDENTE]
 
 A tarefa exige uma regra de proteção ou ruleset que obrigue pull request e aprovação do status check **`verificar`** antes do merge. Essa configuração depende das definições administrativas do repositório e **não é comprovada apenas pelos arquivos do ZIP**. Na tentativa de consulta, a conta da integrante Laura recebeu a mensagem `You don't have access to repository options`, portanto não foi possível visualizar ou editar a regra de proteção. Isso **não demonstra** que a regra inexiste.
 
