@@ -99,15 +99,27 @@ O workflow `migrar` tem gatilho `push` na `main` com filtro `paths: ['migrations
 A pasta `migrations/` contém `0001_inicial.sql`, que cria a tabela `notas`, e `0002_adiciona_coluna.sql`, que adiciona a coluna `observacao TEXT` à tabela. O `wrangler.toml` declara o binding `DB`, o banco `oauth-sessions-equipe-02` e o diretório de migrações.
 
 - **PR/merge com migrações:** [PR #1](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/1), commit de merge `6559a46`, associado ao único run de `migrar` visível nas capturas.
-- **Execução de `migrar` após o merge:** `migrar #1`, branch `main`, job `aplicar`, resultado **Success**; step `Aplica migrações no D1 remoto` concluído com sucesso. **[PENDENTE — colar URL individual do run #1]**.
+
+- **Execução de `migrar` após o merge:** [migrar #1 — Success](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/runs/38005176585). Executado na branch `main`, após o merge do PR #1 (commit `6559a46`), com o job `aplicar` aprovado. As migrações `0001_inicial.sql` e `0002_adiciona_coluna.sql` foram aplicadas ao banco D1 remoto.
+
 - **Resultado comprovado do log do Wrangler:** o comando `npx --yes wrangler d1 migrations apply oauth-sessions-equipe-02 --remote` indicou `Resource location: remote`; `0001_inicial.sql` e `0002_adiciona_coluna.sql` apareceram com status de sucesso na tabela final do log. Isso comprova **a aplicação remota das duas migrações**, mas não substitui a saída solicitada do `PRAGMA`.
-- **Confirmação da coluna remota:** ainda **[PENDENTE]**. O painel Cloudflare acessível à integrante não pertence à conta que hospeda o banco deste repositório; o proprietário ou outra pessoa autorizada deverá executar e registrar:
+  
 
-```bash
-npx --yes wrangler d1 execute oauth-sessions-equipe-02 --remote --command "PRAGMA table_info(notas)"
-```
+- **Confirmação da coluna remota:** foi executado o comando `PRAGMA table_info(notas);` diretamente no Console do Cloudflare D1, no banco `oauth-sessions-equipe-02`, após a execução bem-sucedida do workflow `migrar`.
 
-**Saída real do `PRAGMA table_info(notas)`: [PENDENTE — anexar o resultado que liste a coluna `observacao`, do tipo `TEXT`; não simular o retorno].**
+**Resultado real da consulta:**
+
+| Coluna | Tipo |
+|---|---|
+| id | INTEGER |
+| aluno | TEXT |
+| nota | REAL |
+| observacao | TEXT |
+
+A consulta confirmou que a migração `0002_adiciona_coluna.sql` foi aplicada corretamente, adicionando a coluna `observacao` à tabela `notas` no banco D1 remoto.
+
+A evidência foi conferida no Console do Cloudflare D1 em 09/10/2026.
+
 
 - **Merge sem mudanças em `migrations/`:** [PR #4 — arquivos alterados](https://github.com/gabriel240705/oauth-aula-equipe-02/pull/4/files), incorporado à `main` pelo commit `91218dc`. A aba **Files changed** registra somente a criação de `TESTE-SEM-MIGRACAO.md`, sem alterações na pasta `migrations/`.
 - **Prova de ausência de disparo:** [histórico de `migrar`](https://github.com/gabriel240705/oauth-aula-equipe-02/actions/workflows/migrar.yml). Na captura posterior ao merge do PR #4, o histórico apresentava **apenas uma execução**, ligada ao merge do PR #1; não havia nova execução para o commit `91218dc`. O resultado é consistente com o filtro `paths: ['migrations/**']`.
